@@ -1,0 +1,30 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import TagList from './TagList.astro';
+import { readingTime, type Post } from '../utils/posts';
+
+export interface Props {
+  post: Post;
+  /** Show the featured treatment. Off on the home page, where everything is recent. */
+  showFeatured?: boolean;
+}
+
+const { post, showFeatured = false } = Astro.props;
+const featured = showFeatured && post.data.featured;
+const minutes = readingTime(post.body);
+---
+
+<article class:list={['post-card', { 'is-featured': featured }]} data-reveal>
+  <p class="post-meta">
+    {featured && <span class="featured-flag">Pinned</span>}
+    {featured && <span class="dot">/</span>}
+    <FormattedDate date={post.data.pubDate} format="short" />
+    <span class="dot">/</span>
+    <span>{minutes} min read</span>
+  </p>
+
+  <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+  <p>{post.data.description}</p>
+
+  <TagList tags={post.data.tags} label={`Tags for ${post.data.title}`} />
+</article>

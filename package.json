@@ -1,0 +1,32 @@
+{
+  "name": "brendanpcs-blog",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal tech blog for BrendanPcs (@brendan_pcs).",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "gen:images": "node scripts/gen-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.35.4",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

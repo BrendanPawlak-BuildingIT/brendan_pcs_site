@@ -1,0 +1,39 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { SITE } from '../../data/site';
+import { collectTags, getPublishedPosts, postsWithTag } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return collectTags(posts).map(({ tag }) => ({
+    params: { tag },
+    props: { tag, posts: postsWithTag(posts, tag) },
+  }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { tag, posts } = Astro.props as Props;
+---
+
+<BaseLayout title={`#${tag} — ${SITE.name}`} description={`Posts tagged #${tag} on ${SITE.name}.`}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Tag</p>
+      <h1>#{tag}</h1>
+      <p>
+        {posts.length}
+        {posts.length === 1 ? 'post' : 'posts'} tagged <strong>#{tag}</strong>.
+        <a class="link-more" href="/blog">See everything →</a>
+      </p>
+    </header>
+
+    <section class="page-body" aria-label={`Posts tagged ${tag}`}>
+      <div class="post-list">
+        {posts.map((post) => <PostCard {post} />)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

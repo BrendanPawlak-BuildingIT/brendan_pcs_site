@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import TagList from '../../components/TagList.astro';
+import { SITE } from '../../data/site';
+import { collectTags, getPublishedPosts, pinFeatured } from '../../utils/posts';
+
+const posts = pinFeatured(await getPublishedPosts());
+const tags = collectTags(posts);
+const counts = Object.fromEntries(tags.map(({ tag, count }) => [tag, count]));
+---
+
+<BaseLayout
+  title={`Blog — ${SITE.name}`}
+  description="Every post: PC builds, hardware notes, homelab experiments, and benchmarks."
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Writing</p>
+      <h1>Blog</h1>
+      <p>
+        {posts.length}
+        {posts.length === 1 ? 'post' : 'posts'} on builds, parts, and the things that only go wrong once
+        you have already closed the case.
+      </p>
+    </header>
+
+    {
+      tags.length > 0 && (
+        <section class="tag-strip" aria-labelledby="browse-tags">
+          <h2 id="browse-tags" class="visually-hidden">
+            Browse by tag
+          </h2>
+          <TagList tags={tags.map((t) => t.tag)} {counts} label="Browse by tag" />
+        </section>
+      )
+    }
+
+    <section class="page-body" aria-label="All posts">
+      <div class="post-list">
+        {posts.map((post) => <PostCard {post} showFeatured />)}
+      </div>
+      {posts.length === 0 && <p>No posts published yet — check back shortly.</p>}
+    </section>
+  </div>
+</BaseLayout>

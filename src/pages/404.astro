@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout title={`Page not found — ${SITE.name}`} description="That page does not exist." noindex>
+  <div class="wrap notfound">
+    <p class="code">404</p>
+    <h1>No POST beep for that page.</h1>
+    <p>The link is dead, renamed, or was never here. The blog index is a good place to restart.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/blog">Browse the blog</a>
+      <a class="btn btn-ghost" href="/">Back home</a>
+    </div>
+  </div>
+</BaseLayout>

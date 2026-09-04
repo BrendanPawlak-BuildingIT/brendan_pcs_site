@@ -1,0 +1,123 @@
+---
+import { NAV_LINKS, SITE } from '../data/site';
+
+/** Marks the nav item matching the current page (top-level section match). */
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<header class="site-header" id="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo" aria-label={`${SITE.name} — home`}>
+      <span class="logo-mark" aria-hidden="true">B</span>
+      <span class="logo-text">Brendan<span>Pcs</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      {
+        NAV_LINKS.map((link) => (
+          <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-ghost btn-small" href="/rss.xml">RSS</a>
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div
+  class="mobile-nav"
+  id="mobile-nav"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu"
+  aria-hidden="true"
+>
+  <div class="mobile-nav-top">
+    <a href="/" class="logo" aria-label={`${SITE.name} — home`}>
+      <span class="logo-mark" aria-hidden="true">B</span>
+      <span class="logo-text">Brendan<span>Pcs</span></span>
+    </a>
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <line x1="4" y1="4" x2="20" y2="20"></line>
+        <line x1="20" y1="4" x2="4" y2="20"></line>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="mobile-nav-links" aria-label="Mobile primary">
+    {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+  </nav>
+
+  <div class="mobile-nav-footer">
+    <a class="btn btn-ghost btn-block" href="/rss.xml">Subscribe via RSS</a>
+  </div>
+</div>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileNavClose = document.getElementById('mobile-nav-close');
+
+  function openMobileNav() {
+    mobileNav?.classList.add('open');
+    mobileNav?.setAttribute('aria-hidden', 'false');
+    navToggle?.setAttribute('aria-expanded', 'true');
+    navToggle?.setAttribute('aria-label', 'Close menu');
+    document.body.classList.add('nav-locked');
+    mobileNavClose?.focus();
+  }
+
+  function closeMobileNav() {
+    mobileNav?.classList.remove('open');
+    mobileNav?.setAttribute('aria-hidden', 'true');
+    navToggle?.setAttribute('aria-expanded', 'false');
+    navToggle?.setAttribute('aria-label', 'Open menu');
+    document.body.classList.remove('nav-locked');
+  }
+
+  navToggle?.addEventListener('click', () => {
+    if (mobileNav?.classList.contains('open')) {
+      closeMobileNav();
+      navToggle.focus();
+    } else {
+      openMobileNav();
+    }
+  });
+
+  mobileNavClose?.addEventListener('click', () => {
+    closeMobileNav();
+    navToggle?.focus();
+  });
+
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMobileNav);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileNav?.classList.contains('open')) {
+      closeMobileNav();
+      navToggle?.focus();
+    }
+  });
+</script>

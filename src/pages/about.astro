@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import { SITE, SOCIALS } from '../data/site';
+---
+
+<BaseLayout
+  title={`About — ${SITE.name}`}
+  description={`Who ${SITE.name} is, what the blog covers, and where to find him.`}
+>
+  <div class="wrap wrap-narrow">
+    <header class="page-head">
+      <p class="kicker">About</p>
+      <h1>Hey — I'm Brendan.</h1>
+      <p class="post-lede">
+        I build PCs, take hardware apart, and write down what actually happened. This blog is where
+        the long version of my videos and posts lives.
+      </p>
+    </header>
+
+    <div class="prose page-body">
+      <p>
+        Most of what I make starts the same way: a part arrives, I have a theory about how it will
+        behave, and the theory turns out to be half right. The videos show the build. The posts here
+        are for the parts that need numbers, screenshots, or a paragraph of context — thermals that
+        did not match the review sites, a BIOS setting that quietly cost 8% of a benchmark, a cable
+        run I would do differently next time.
+      </p>
+
+      <h2>What I write about</h2>
+      <ul>
+        <li><strong>Builds</strong> — full part lists, what they cost, and what I would change.</li>
+        <li>
+          <strong>Hardware</strong> — cooling, cases, PSUs, and the specs that actually matter.
+        </li>
+        <li><strong>Homelab</strong> — the machines that run in the closet and stay on.</li>
+        <li><strong>Benchmarks</strong> — how I test, and where the numbers came from.</li>
+      </ul>
+
+      <h2>How I test</h2>
+      <p>
+        Every benchmark post lists the full bench, the driver versions, ambient temperature, and how
+        many runs went into the number. If I cannot reproduce a result twice, it does not get
+        published. When I get something wrong, I update the post and note what changed at the top
+        rather than quietly editing it.
+      </p>
+
+      <h2>Get in touch</h2>
+      <p>
+        The fastest way to reach me is a reply on any of the accounts below — I am
+        <strong>{SITE.handle}</strong> on all of them. For anything longer,
+        <a href={`mailto:${SITE.email}`}>email works too</a>.
+      </p>
+    </div>
+
+    <section class="page-body" aria-labelledby="find-me">
+      <h2 id="find-me" class="visually-hidden">Find me</h2>
+      <ul class="socials">
+        {
+          SOCIALS.map((social) => (
+            <li>
+              <a class="social-link" href={social.href} rel="me noopener" target="_blank">
+                <SocialIcon name={social.icon} />
+                {social.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a class="social-link" href={`mailto:${SITE.email}`}>
+            <SocialIcon name="email" />
+            Email
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

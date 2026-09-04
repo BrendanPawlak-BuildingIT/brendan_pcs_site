@@ -1,0 +1,18 @@
+---
+export interface Props {
+  date: Date;
+  /** 'long' → "March 4, 2026"; 'short' → "Mar 4, 2026". */
+  format?: 'long' | 'short';
+}
+
+const { date, format = 'long' } = Astro.props;
+
+const label = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: format === 'long' ? 'long' : 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<time datetime={date.toISOString()}>{label}</time>

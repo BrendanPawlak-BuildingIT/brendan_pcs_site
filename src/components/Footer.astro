@@ -1,0 +1,47 @@
+---
+import SocialIcon from './SocialIcon.astro';
+import { NAV_LINKS, SITE, SOCIALS } from '../data/site';
+
+const year = new Date().getFullYear();
+const copyrightYears = year > SITE.startYear ? `${SITE.startYear}–${year}` : `${year}`;
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo" aria-label={`${SITE.name} — home`}>
+          <span class="logo-mark" aria-hidden="true">B</span>
+          <span class="logo-text">Brendan<span>Pcs</span></span>
+        </a>
+        <p>{SITE.tagline}</p>
+      </div>
+
+      <ul class="socials">
+        {
+          SOCIALS.map((social) => (
+            <li>
+              <a class="social-link" href={social.href} rel="me noopener" target="_blank">
+                <SocialIcon name={social.icon} />
+                {social.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a class="social-link" href="/rss.xml">
+            <SocialIcon name="rss" />
+            RSS
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {copyrightYears} {SITE.name} · {SITE.handle}</span>
+      <nav aria-label="Footer">
+        {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+      </nav>
+    </div>
+  </div>
+</footer>

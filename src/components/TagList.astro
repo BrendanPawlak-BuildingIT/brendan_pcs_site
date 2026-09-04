@@ -1,0 +1,35 @@
+---
+export interface Props {
+  tags: string[];
+  /** Render as links to the tag archive. Off for plain decorative lists. */
+  linked?: boolean;
+  /** Optional per-tag post counts, keyed by lowercase tag. */
+  counts?: Record<string, number>;
+  label?: string;
+}
+
+const { tags, linked = true, counts, label = 'Tags' } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <ul class="tag-list" aria-label={label}>
+      {tags.map((tag) => {
+        const slug = tag.toLowerCase();
+        const count = counts?.[slug];
+        return (
+          <li>
+            {linked ? (
+              <a class="tag" href={`/tags/${encodeURIComponent(slug)}/`}>
+                #{slug}
+                {count !== undefined && <span class="count">{count}</span>}
+              </a>
+            ) : (
+              <span class="tag">#{slug}</span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  )
+}

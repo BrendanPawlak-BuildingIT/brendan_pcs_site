@@ -1,0 +1,124 @@
+---
+import type { MarkdownHeading } from 'astro';
+import { Image } from 'astro:assets';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import TagList from '../components/TagList.astro';
+import { SITE } from '../data/site';
+import { readingTime, type Post } from '../utils/posts';
+
+export interface Props {
+  post: Post;
+  headings: MarkdownHeading[];
+  prev: Post | null;
+  next: Post | null;
+}
+
+const { post, headings, prev, next } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, cover, coverAlt } = post.data;
+
+const minutes = readingTime(post.body);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// A table of contents only earns its space on a post with real structure.
+const toc = headings.filter((heading) => heading.depth === 2);
+const showToc = toc.length >= 3;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  mainEntityOfPage: canonicalURL.href,
+  url: canonicalURL.href,
+  keywords: tags.join(', '),
+  author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+  publisher: { '@type': 'Person', name: SITE.name, url: SITE.url },
+};
+---
+
+<BaseLayout title={`${title} — ${SITE.name}`} {description} type="article">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={pubDate.toISOString()} />
+    {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
+    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} is:inline />
+  </Fragment>
+
+  <article class="wrap wrap-narrow">
+    <header class="post-header">
+      <p class="post-meta">
+        <FormattedDate date={pubDate} />
+        <span class="dot">/</span>
+        <span>{minutes} min read</span>
+        {updatedDate && <span class="dot">/</span>}
+        {
+          updatedDate && (
+            <span>
+              Updated <FormattedDate date={updatedDate} format="short" />
+            </span>
+          )
+        }
+      </p>
+      <h1>{title}</h1>
+      <p class="post-lede">{description}</p>
+      <TagList {tags} />
+    </header>
+
+    {
+      cover && (
+        <Image
+          class="post-cover"
+          src={cover}
+          alt={coverAlt ?? ''}
+          widths={[480, 780, 1120]}
+          sizes="(min-width: 820px) 780px, 100vw"
+          loading="eager"
+        />
+      )
+    }
+
+    {
+      showToc && (
+        <nav class="toc" aria-label="On this page">
+          <p class="toc-title">On this page</p>
+          <ol>
+            {toc.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <footer class="post-foot">
+      {
+        (prev || next) && (
+          <nav class="post-nav" aria-label="More posts">
+            {prev && (
+              <a href={`/blog/${prev.id}/`} rel="prev">
+                <span class="label">← Older</span>
+                <span class="title">{prev.data.title}</span>
+              </a>
+            )}
+            {next && (
+              <a class="to-newer" href={`/blog/${next.id}/`} rel="next">
+                <span class="label">Newer →</span>
+                <span class="title">{next.data.title}</span>
+              </a>
+            )}
+          </nav>
+        )
+      }
+      <p><a class="link-more" href="/blog">← All posts</a></p>
+    </footer>
+  </article>
+</BaseLayout>
