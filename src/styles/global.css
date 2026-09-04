@@ -772,6 +772,12 @@ a.tag:hover {
   height: 16px;
   flex: none;
 }
+/* The per-account handle, shown on the About page list. */
+.social-handle {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-mute);
+}
 
 /* ============ Footer ============ */
 .site-footer {

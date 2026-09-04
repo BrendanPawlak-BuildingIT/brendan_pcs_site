@@ -66,8 +66,8 @@ export const SOCIALS: Social[] = [
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/brendan_pcs',
-    handle: '@brendan_pcs',
+    href: 'https://github.com/brendanpcs',
+    handle: '@brendanpcs',
     icon: 'github',
   },
 ];

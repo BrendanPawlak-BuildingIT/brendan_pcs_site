@@ -47,8 +47,7 @@ import { SITE, SOCIALS } from '../data/site';
 
       <h2>Get in touch</h2>
       <p>
-        The fastest way to reach me is a reply on any of the accounts below — I am
-        <strong>{SITE.handle}</strong> on all of them. For anything longer,
+        The fastest way to reach me is a reply on any of the accounts below. For anything longer,
         <a href={`mailto:${SITE.email}`}>email works too</a>.
       </p>
     </div>
@@ -62,6 +61,7 @@ import { SITE, SOCIALS } from '../data/site';
               <a class="social-link" href={social.href} rel="me noopener" target="_blank">
                 <SocialIcon name={social.icon} />
                 {social.label}
+                <span class="social-handle">{social.handle}</span>
               </a>
             </li>
           ))
