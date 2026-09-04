@@ -3,6 +3,7 @@ title: 'Day 3 Networking: Network Types'
 description: 'PAN, LAN, WLAN, VLAN, WAN, MAN, CAN — network types broken down by how big they are.'
 pubDate: 2026-04-15
 tags: ['networking']
+draft: true
 videoId: '2--PHh-7qDQ'
 ---
 

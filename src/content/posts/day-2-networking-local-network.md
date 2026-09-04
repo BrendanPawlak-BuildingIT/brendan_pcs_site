@@ -3,6 +3,7 @@ title: 'Day 2 Networking: Local Network'
 description: 'Everything that makes up a network — router, switch, patch panel, and everything hanging off it.'
 pubDate: 2026-04-13
 tags: ['networking']
+draft: true
 videoId: 'hnQO3nVAKOY'
 ---
 

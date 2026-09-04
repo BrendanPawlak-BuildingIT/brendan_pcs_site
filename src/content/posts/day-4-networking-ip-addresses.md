@@ -3,6 +3,7 @@ title: 'Day 4 Networking: IP Addresses'
 description: '52 days left to pass my Network+. Your IP address is a lot like your mailing address, just for your computer.'
 pubDate: 2026-04-17
 tags: ['networking']
+draft: true
 videoId: 'FIruhAdRb90'
 ---
 

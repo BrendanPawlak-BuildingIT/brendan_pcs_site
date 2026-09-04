@@ -3,6 +3,7 @@ title: 'Day 1 Networking: OSI Model'
 description: 'Day one of learning networking every day or I lose my job. First thing I ran into: the OSI model.'
 pubDate: 2026-04-12
 tags: ['networking']
+draft: true
 videoId: 'KIGvtf5Cwj8'
 ---
 
