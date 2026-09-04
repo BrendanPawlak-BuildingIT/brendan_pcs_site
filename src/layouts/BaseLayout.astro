@@ -49,6 +49,12 @@ const personSchema = {
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, follow" />}
 
+    <!-- Marks JS as available before first paint, which is what arms the
+         scroll-reveal styles. Without it the content renders plainly. -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+
     <!-- Fonts: downloaded and self-hosted at build time (astro.config.mjs) -->
     <Font cssVariable="--font-sans" preload />
 

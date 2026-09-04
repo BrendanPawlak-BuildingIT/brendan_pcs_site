@@ -843,19 +843,21 @@ a.tag:hover {
 }
 
 /* ============ Reveal on scroll ============ */
-[data-reveal] {
+/* Scoped to .js (set by an inline script in <head>) so that with JavaScript
+   off or broken, every post stays visible instead of being stuck at opacity 0. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(14px);
   transition:
     opacity var(--t-med) var(--ease-out),
     transform var(--t-med) var(--ease-out);
 }
-[data-reveal].is-visible {
+.js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
+  .js [data-reveal] {
     opacity: 1;
     transform: none;
   }
