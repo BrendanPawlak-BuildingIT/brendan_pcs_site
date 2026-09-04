@@ -6,43 +6,63 @@ import { SITE, SOCIALS } from '../data/site';
 
 <BaseLayout
   title={`About — ${SITE.name}`}
-  description={`Who ${SITE.name} is, what the blog covers, and where to find him.`}
+  description="I build PCs, run a home lab out of hardware I got for free, and I'm studying for my Network+ because my job depends on it."
 >
   <div class="wrap wrap-narrow">
     <header class="page-head">
       <p class="kicker">About</p>
       <h1>Hey — I'm Brendan.</h1>
       <p class="post-lede">
-        I build PCs, take hardware apart, and write down what actually happened. This blog is where
-        the long version of my videos and posts lives.
+        I build PCs, run a home lab out of hardware I got for free, and I'm studying for my Network+
+        because my job kind of depends on it. This site is the written version of my shorts.
       </p>
     </header>
 
     <div class="prose page-body">
       <p>
-        Most of what I make starts the same way: a part arrives, I have a theory about how it will
-        behave, and the theory turns out to be half right. The videos show the build. The posts here
-        are for the parts that need numbers, screenshots, or a paragraph of context — thermals that
-        did not match the review sites, a BIOS setting that quietly cost 8% of a benchmark, a cable
-        run I would do differently next time.
+        Everything on here started as a short. The videos are quick — a build, a fix, something I
+        brought home from work. The posts are the same thing written down, so you can actually read
+        the part list or the command instead of pausing the video every three seconds.
       </p>
 
-      <h2>What I write about</h2>
-      <ul>
-        <li><strong>Builds</strong> — full part lists, what they cost, and what I would change.</li>
-        <li>
-          <strong>Hardware</strong> — cooling, cases, PSUs, and the specs that actually matter.
-        </li>
-        <li><strong>Homelab</strong> — the machines that run in the closet and stay on.</li>
-        <li><strong>Benchmarks</strong> — how I test, and where the numbers came from.</li>
-      </ul>
-
-      <h2>How I test</h2>
+      <h2>The home lab</h2>
       <p>
-        Every benchmark post lists the full bench, the driver versions, ambient temperature, and how
-        many runs went into the number. If I cannot reproduce a result twice, it does not get
-        published. When I get something wrong, I update the post and note what changed at the top
-        rather than quietly editing it.
+        Most of my stuff was free. My college gave me a networking switch that was sitting in a
+        trash pile, and a couple of storage servers that hold 24 hard drives each. I brought home
+        two 24 bay drive bays from work. The oldest piece is a 2017 desktop with a 7th gen i5 that's
+        been running my modded Minecraft servers for a couple years now.
+      </p>
+      <p>
+        The plan is one of the big chassis for Plex and Jellyfin, the other one as a NAS, and the
+        switch tying it all together. That's the project I actually care about, and most of what I
+        post is me working toward it.
+      </p>
+
+      <h2>Networking</h2>
+      <p>
+        I'm studying for my Network+ and there's a real deadline on it — if I don't pass, I could
+        lose my job. So I'm posting what I learn as I go. Explaining it to a camera turns out to be
+        a pretty good way to make it stick.
+      </p>
+
+      <h2>PCs</h2>
+      <p>
+        I build them, I fix them, and sometimes I build one just to flip it — I did a $600 gaming PC
+        for jawa.gg. I've been through my brother's PC twice now: once to reapply thermal paste
+        after it started overheating, once to rebuild it into a new case, where I might have gone a
+        little light on the paste again.
+      </p>
+      <p>
+        The thing I end up saying most: keep your parts balanced. A $1,200 motherboard in a $600 PC
+        doesn't make it faster. And only upgrade when you're actually unhappy with the performance.
+      </p>
+
+      <h2>Still figuring plenty out</h2>
+      <p>
+        I put Linux on an 8 year old laptop recently and I'm not going to pretend I knew what I was
+        doing. Mint, because it's lightweight and good for beginners. It went better than I
+        expected. That's most of what's on this site — trying something, saying what actually
+        happened, and asking what I should do next.
       </p>
 
       <h2>Get in touch</h2>

@@ -10,8 +10,8 @@ export const SITE = {
   url: 'https://brendanpcs.com',
   title: 'BrendanPcs — PC builds, hardware, and homelab notes',
   description:
-    'Tech write-ups from Brendan: PC builds, hardware teardowns, homelab experiments, and the occasional benchmark that did not go to plan.',
-  tagline: 'PC builds, hardware, and the notes I wish I had the first time.',
+    'The written version of my shorts — PC builds and repairs, a home lab put together from free hardware, and studying for my Network+.',
+  tagline: 'PC builds, a home lab made of free hardware, and studying for my Network+.',
   email: 'brendancomputers@gmail.com',
   /** Used in the footer copyright line. */
   startYear: 2026,
