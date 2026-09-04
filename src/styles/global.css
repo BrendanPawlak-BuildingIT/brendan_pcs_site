@@ -545,6 +545,9 @@ a.tag:hover {
 .post-header .post-meta {
   margin-bottom: 18px;
 }
+.watch-link {
+  margin-top: 20px;
+}
 .post-cover {
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);

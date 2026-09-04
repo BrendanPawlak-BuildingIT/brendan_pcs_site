@@ -15,10 +15,11 @@ export interface Props {
 }
 
 const { post, headings, prev, next } = Astro.props;
-const { title, description, pubDate, updatedDate, tags, cover, coverAlt } = post.data;
+const { title, description, pubDate, updatedDate, tags, cover, coverAlt, videoId } = post.data;
 
 const minutes = readingTime(post.body);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const videoURL = videoId ? `https://www.youtube.com/shorts/${videoId}` : null;
 
 // A table of contents only earns its space on a post with real structure.
 const toc = headings.filter((heading) => heading.depth === 2);
@@ -65,6 +66,15 @@ const articleSchema = {
       <h1>{title}</h1>
       <p class="post-lede">{description}</p>
       <TagList {tags} />
+      {
+        videoURL && (
+          <p class="watch-link">
+            <a class="btn btn-ghost btn-small" href={videoURL} rel="noopener" target="_blank">
+              Watch the short →
+            </a>
+          </p>
+        )
+      }
     </header>
 
     {

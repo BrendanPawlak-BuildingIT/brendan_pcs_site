@@ -13,6 +13,8 @@ const posts = defineCollection({
       tags: z.array(z.string()).default([]),
       cover: image().optional(),
       coverAlt: z.string().optional(),
+      /** YouTube ID when the post is the write-up of a video. */
+      videoId: z.string().optional(),
       /** Drafts render in `astro dev` but are excluded from the production build and the feed. */
       draft: z.boolean().default(false),
       /** Pinned to the top of the blog index. */

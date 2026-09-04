@@ -74,6 +74,7 @@ Every frontmatter field:
 | `tags`        | no       | Lowercased automatically; each one gets a `/tags/<tag>/` page   |
 | `cover`       | no       | Path to an image in `src/assets/`, e.g. `'../../assets/x.jpg'`  |
 | `coverAlt`    | no       | Alt text for the cover — write it whenever `cover` is set       |
+| `videoId`     | no       | YouTube ID — adds a "Watch the short" link to the post header   |
 | `draft`       | no       | `true` keeps it out of production builds, the feed, and sitemap |
 | `featured`    | no       | `true` pins it to the top of the blog index                     |
 
@@ -122,11 +123,13 @@ Connect the repository in the Cloudflare dashboard, enter those three values, an
    `src/data/site.ts`.
 2. **Prune the social links.** `SOCIALS` in `src/data/site.ts` lists YouTube, X, Instagram, TikTok,
    and GitHub. Delete any account that does not exist — a dead link is worse than a missing one.
-3. **Replace the sample posts.** The three posts in `src/content/posts/` are placeholder copy
-   written to exercise the layouts (a table, code blocks, a cover image, a short post). Delete them
-   before launch.
-4. **Replace the sample cover.** `src/assets/sample-cover.jpg` is generated from the OG image as a
-   stand-in. Swap in real photos.
+3. **Add cover images.** No post has a `cover` yet, so the blog index and post pages are text-only.
+   Drop real photos into `src/assets/` and reference them from frontmatter.
+
+## The posts
+
+`src/content/posts/` holds one post per YouTube short, written from the transcripts and dated to
+each video's upload date. Each carries a `videoId`, which renders the "Watch the short" link.
 
 ## Fonts
 

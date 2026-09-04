@@ -10,7 +10,6 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const publicDir = path.join(root, 'public');
-const assetsDir = path.join(root, 'src', 'assets');
 
 const iconSvg = path.join(publicDir, 'icon.svg');
 const ogSvg = path.join(publicDir, 'og-image.svg');
@@ -31,10 +30,4 @@ await sharp(ogSvg, { density: 144 })
   .png()
   .toFile(path.join(publicDir, 'og-image.png'));
 
-// Placeholder cover for the sample post — replace with a real photo.
-await sharp(ogSvg, { density: 144 })
-  .resize(1600, 900, { fit: 'cover', position: 'centre' })
-  .jpeg({ quality: 82 })
-  .toFile(path.join(assetsDir, 'sample-cover.jpg'));
-
-console.log('Generated favicons + OG image from public/*.svg, and the sample post cover.');
+console.log('Generated favicons + OG image from public/*.svg.');
