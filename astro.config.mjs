@@ -18,13 +18,6 @@ export default defineConfig({
       weights: [400, 500, 600, 700],
       fallbacks: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
     },
-    {
-      provider: fontProviders.google(),
-      name: 'JetBrains Mono',
-      cssVariable: '--font-mono',
-      weights: [400, 500],
-      fallbacks: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
-    },
   ],
 
   markdown: {

@@ -1,26 +1,33 @@
 /* ==========================================================================
    BrendanPcs — Design System (dark only)
-   Canvas #0B0D10 · Surface #14171C · Accent #8B7BFF · Accent-2 #46E6C8
-   Type: Inter (UI/body) + JetBrains Mono (code, labels, dates)
-   The --font-sans / --font-mono variables come from Astro's Fonts API
+   Palette: #F7323F (red) · #0B0D10 (ink) · #15181D (surface) · #F7F8FA (paper) · #A7ADB7 (mist)
+   Type: Inter everywhere. --font-sans comes from Astro's Fonts API
    (configured in astro.config.mjs, injected by <Font> in BaseLayout).
    ========================================================================== */
 
 :root {
-  --canvas: #0b0d10;
-  --surface: #14171c;
+  /* Brand palette */
+  --red: #f7323f; /* accent — CTAs, links, highlights */
+  --ink: #0b0d10; /* deepest dark — page background */
+  --surface: #15181d; /* secondary dark — raised sections */
+  --paper: #f7f8fa; /* light — primary text on dark */
+  --mist: #a7adb7; /* muted gray — secondary text, borders */
+
+  /* Roles, derived from the palette above. This site is dark-only, so `paper`
+     is the text colour and `ink` is the ground. */
+  --canvas: var(--ink);
   --surface-2: #191d23;
 
-  --accent: #8b7bff;
-  --accent-soft: rgba(139, 123, 255, 0.14);
-  --accent-2: #46e6c8;
+  --accent: var(--red);
+  --accent-soft: rgba(247, 50, 63, 0.14);
+  --accent-hover: #ff4b57;
 
-  --text-strong: #f2f4f8;
-  --text-body: rgba(242, 244, 248, 0.68);
-  --text-mute: rgba(242, 244, 248, 0.44);
+  --text-strong: var(--paper);
+  --text-body: rgba(247, 248, 250, 0.68);
+  --text-mute: var(--mist);
 
-  --border: rgba(242, 244, 248, 0.1);
-  --border-soft: rgba(242, 244, 248, 0.06);
+  --border: rgba(247, 248, 250, 0.1);
+  --border-soft: rgba(247, 248, 250, 0.06);
 
   --max-width: 1160px;
   --measure: 68ch;
@@ -116,7 +123,7 @@ summary:focus-visible {
   top: 0;
   z-index: 2000;
   background: var(--accent);
-  color: #0b0d10;
+  color: var(--ink);
   font-weight: 600;
   padding: 12px 20px;
   border-radius: 0 0 var(--radius-sm) 0;
@@ -144,8 +151,8 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(900px 480px at 15% -10%, rgba(139, 123, 255, 0.16), transparent 70%),
-    radial-gradient(700px 420px at 90% 0%, rgba(70, 230, 200, 0.08), transparent 70%);
+    radial-gradient(900px 480px at 15% -10%, rgba(247, 50, 63, 0.16), transparent 70%),
+    radial-gradient(700px 420px at 90% 0%, rgba(247, 50, 63, 0.07), transparent 70%);
 }
 
 /* ============ Layout primitives ============ */
@@ -170,7 +177,7 @@ body::before {
 }
 
 .kicker {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -189,7 +196,7 @@ body::before {
   font-size: clamp(1.5rem, 3vw, 2rem);
 }
 .link-more {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-mute);
   transition: color var(--t-fast) var(--ease-out);
@@ -220,15 +227,15 @@ body::before {
 }
 .btn-primary {
   background: var(--accent);
-  color: #0b0d10;
+  color: var(--ink);
 }
 .btn-primary:hover {
-  background: #9d90ff;
+  background: var(--accent-hover);
 }
 .btn-ghost {
   border-color: var(--border);
   color: var(--text-strong);
-  background: rgba(242, 244, 248, 0.02);
+  background: rgba(247, 248, 250, 0.02);
 }
 .btn-ghost:hover {
   border-color: var(--accent);
@@ -280,9 +287,9 @@ body::before {
   border-radius: 7px;
   display: grid;
   place-items: center;
-  background: linear-gradient(140deg, var(--accent), var(--accent-2));
-  color: #0b0d10;
-  font-family: var(--font-mono);
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 700;
   flex: none;
@@ -406,10 +413,7 @@ body.nav-locked {
 }
 .hero h1 em {
   font-style: normal;
-  background: linear-gradient(100deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent);
 }
 .hero p {
   font-size: clamp(1rem, 2vw, 1.15rem);
@@ -434,13 +438,13 @@ body.nav-locked {
   padding: 22px clamp(18px, 3vw, 28px);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(242, 244, 248, 0.028), rgba(242, 244, 248, 0.01));
+  background: linear-gradient(180deg, rgba(247, 248, 250, 0.028), rgba(247, 248, 250, 0.01));
   transition:
     border-color var(--t-fast) var(--ease-out),
     transform var(--t-fast) var(--ease-out);
 }
 .post-card:hover {
-  border-color: rgba(139, 123, 255, 0.42);
+  border-color: rgba(247, 50, 63, 0.42);
   transform: translateY(-2px);
 }
 .post-card:has(a:focus-visible) {
@@ -464,8 +468,8 @@ body.nav-locked {
   max-width: 62ch;
 }
 .post-card.is-featured {
-  border-color: rgba(139, 123, 255, 0.3);
-  background: linear-gradient(180deg, rgba(139, 123, 255, 0.07), rgba(242, 244, 248, 0.012));
+  border-color: rgba(247, 50, 63, 0.3);
+  background: linear-gradient(180deg, rgba(247, 50, 63, 0.07), rgba(247, 248, 250, 0.012));
 }
 
 .post-meta {
@@ -473,7 +477,7 @@ body.nav-locked {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.76rem;
   letter-spacing: 0.04em;
   color: var(--text-mute);
@@ -493,14 +497,14 @@ body.nav-locked {
 }
 .tag {
   display: inline-block;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.73rem;
   letter-spacing: 0.03em;
   padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text-mute);
-  background: rgba(242, 244, 248, 0.02);
+  background: rgba(247, 248, 250, 0.02);
   position: relative;
   z-index: 1;
   transition:
@@ -510,7 +514,7 @@ body.nav-locked {
 }
 a.tag:hover {
   color: var(--accent);
-  border-color: rgba(139, 123, 255, 0.45);
+  border-color: rgba(247, 50, 63, 0.45);
   background: var(--accent-soft);
 }
 .tag .count {
@@ -561,11 +565,11 @@ a.tag:hover {
   border-radius: var(--radius);
   padding: 18px 22px;
   margin-bottom: 40px;
-  background: rgba(242, 244, 248, 0.02);
+  background: rgba(247, 248, 250, 0.02);
   max-width: var(--measure);
 }
 .toc-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -584,7 +588,7 @@ a.tag:hover {
 }
 .toc li::before {
   content: counter(toc, decimal-leading-zero);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   color: var(--accent);
   margin-right: 10px;
@@ -616,7 +620,7 @@ a.tag:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  text-decoration-color: rgba(139, 123, 255, 0.45);
+  text-decoration-color: rgba(247, 50, 63, 0.45);
   transition: text-decoration-color var(--t-fast) var(--ease-out);
 }
 .prose a:hover {
@@ -661,11 +665,11 @@ a.tag:hover {
   color: var(--text-mute);
 }
 .prose code {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.86em;
   padding: 2px 6px;
   border-radius: 5px;
-  background: rgba(242, 244, 248, 0.07);
+  background: rgba(247, 248, 250, 0.07);
   color: var(--text-strong);
 }
 .prose pre {
@@ -698,7 +702,7 @@ a.tag:hover {
 }
 .prose th {
   color: var(--text-strong);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -726,10 +730,10 @@ a.tag:hover {
   transition: border-color var(--t-fast) var(--ease-out);
 }
 .post-nav a:hover {
-  border-color: rgba(139, 123, 255, 0.42);
+  border-color: rgba(247, 50, 63, 0.42);
 }
 .post-nav .label {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -759,7 +763,7 @@ a.tag:hover {
   border: 1px solid var(--border);
   font-size: 0.88rem;
   color: var(--text-body);
-  background: rgba(242, 244, 248, 0.02);
+  background: rgba(247, 248, 250, 0.02);
   transition:
     color var(--t-fast) var(--ease-out),
     border-color var(--t-fast) var(--ease-out),
@@ -767,7 +771,7 @@ a.tag:hover {
 }
 .social-link:hover {
   color: var(--text-strong);
-  border-color: rgba(139, 123, 255, 0.45);
+  border-color: rgba(247, 50, 63, 0.45);
   transform: translateY(-1px);
 }
 .social-link svg {
@@ -777,7 +781,7 @@ a.tag:hover {
 }
 /* The per-account handle, shown on the About page list. */
 .social-handle {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.76rem;
   color: var(--text-mute);
 }
@@ -810,7 +814,7 @@ a.tag:hover {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: space-between;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.76rem;
   color: var(--text-mute);
 }
@@ -832,7 +836,7 @@ a.tag:hover {
   padding-block: var(--section-pad);
 }
 .notfound .code {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: clamp(3rem, 12vw, 6rem);
   color: var(--accent);
   line-height: 1;

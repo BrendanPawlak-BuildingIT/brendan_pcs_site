@@ -1,12 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#8B7BFF" />
-      <stop offset="100%" stop-color="#46E6C8" />
-    </linearGradient>
-  </defs>
   <rect width="512" height="512" rx="112" fill="#0B0D10" />
-  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#F2F4F8" stroke-opacity="0.08" stroke-width="2" />
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#F7F8FA" stroke-opacity="0.08" stroke-width="2" />
   <text
     x="256"
     y="256"
@@ -15,6 +9,6 @@
     font-family="Consolas, 'DejaVu Sans Mono', 'Courier New', monospace"
     font-weight="700"
     font-size="248"
-    fill="url(#mark)"
+    fill="#F7323F"
   >B</text>
 </svg>
